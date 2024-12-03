@@ -11,7 +11,9 @@ export default function App() {
       <StatusBar style="auto" />
       <EstudianteComponent></EstudianteComponent>
       <AsignaturaComponent></AsignaturaComponent>
-      <AddEstudiante></AddEstudiante>
+    
+        <AddEstudiante/>
+    
     </View>
   );
 }

@@ -39,6 +39,7 @@ export default function EstudianteComponent() {
         placeholder="Nombre"
         value={nombre}
         onChangeText={setNombre}
+       
       />
       <TextInput
         style={styles.input}
