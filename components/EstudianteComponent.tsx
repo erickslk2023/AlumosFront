@@ -1,5 +1,5 @@
 import { View, Text, Alert, FlatList ,StyleSheet} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect,  useState } from 'react'
 import api from '../service/api';
 import { Estudiante } from '../modelo/Estudiante';
 
