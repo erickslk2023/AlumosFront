@@ -1,24 +1,22 @@
 import { View, Text, Alert, FlatList ,StyleSheet} from 'react-native'
 import React, { useEffect,  useState } from 'react'
 import api from '../service/api';
-import { Estudiante } from '../modelo/Estudiante';
+import { Asignatura } from '../modelo/Asignatura';
 
-export default function EstudianteComponent() {
+export default function AsiganuraComponente() {
 
   const [nombre, setNombre]= useState<string>('');
-  const [apellido, serApellido] = useState<string> ('')
-  const [correo, setCorreo]= useState<string> ('')
-  const [telefono, setTelefono] = useState<string> ('')
-  const [idEstudiante, setIdEstudiante] = useState<number> (0)
+  const [estado, setEstado]  = useState<number> (0)
+ 
 
-  const [estudiantes, setEstudiantes]= useState([]);
+  const [asignaturas, setAsignaturas]= useState([]);
 
 
-  const getEstudiante = async () =>{
+  const getAsignaturas = async () =>{
     try {
         
-        const response= await api.get('estudiantes');
-        setEstudiantes(response.data)
+        const response= await api.get('asignaturas');
+        setAsignaturas(response.data)
 
     } catch (error) {
         Alert.alert('Error', 'Ocurrio un error' + error)
@@ -26,21 +24,21 @@ export default function EstudianteComponent() {
   }
 
   useEffect(()=>{
-        getEstudiante()
+        getAsignaturas()
   }, [])
 
   return (
     <View style={styles.container}>
       
     <FlatList 
-      data={estudiantes}
-      keyExtractor={(item:Estudiante) => item.idestudiante.toString()}
+      data={asignaturas}
+      keyExtractor={(item:Asignatura) => item.idasignatura.toString()}
       renderItem={({item})=>(
 
         <View style={styles.card}>
-            <Text>{ `${item.nombre}  ${item.apellido}`}</Text>
-            <Text>{item.correo}</Text>
-            <Text>{item.telefono} </Text>
+            <Text>{ `${item.nombre}`}</Text>
+            <Text>{item.estado}</Text>
+            
         </View>
        
       )}

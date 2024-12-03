@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import EstudianteComponent from './components/EstudianteComponent';
+import AsignaturaComponent from './components/AsignaturaComponente';
+import AddEstudiante from './components/AddEstudiante';
 
 export default function App() {
   return (
@@ -8,6 +10,8 @@ export default function App() {
       <Text>Estudiantes</Text>
       <StatusBar style="auto" />
       <EstudianteComponent></EstudianteComponent>
+      <AsignaturaComponent></AsignaturaComponent>
+      <AddEstudiante></AddEstudiante>
     </View>
   );
 }
