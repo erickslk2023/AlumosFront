@@ -1,35 +1,29 @@
-import { View, Text, Alert, TextInput, Button, FlatList ,StyleSheet} from 'react-native'
+import { View, Text, Alert, TextInput, Button, FlatList ,StyleSheet,} from 'react-native'
 import React, { useEffect,  useState } from 'react'
 import api from '../service/api';
 import { Estudiante } from '../modelo/Estudiante';
 
-export default function EstudianteComponent() {
+export default function AsiganuraComponente() {
 
   const [nombre, setNombre]= useState<string>('');
-  const [apellido, setApellido] = useState<string> ('')
-  const [correo, setCorreo]= useState<string> ('')
-  const [telefono, setTelefono] = useState<string> ('')
+  const [estado, setEstado] = useState<string> ('')
   
+   
+  const [asignaturas, setAsignaturas] = useState<Estudiante[]>([]);
 
-  
-  const [estudiantes, setEstudiantes] = useState<Estudiante[]>([]);
 
-
-  const handleAddEstudiante = async () => {
+  const handleAddAsignatura = async () => {
     try {
-      const newEstudiante = { nombre, apellido, correo, telefono };
-      const response = await api.post('estudiantes', newEstudiante);
-      setEstudiantes([...estudiantes, response.data]);
+      const newAsignatura = { nombre, estado };
+      const response = await api.post('asignaturas', newAsignatura);
+      setAsignaturas([...asignaturas, response.data]);
      
       setNombre('');
-      setApellido('');
-      setCorreo('');
-      setTelefono('');
-
+      setEstado('');
 
     } catch (error) {
       Alert.alert('Error', 'Ocurrió un error al agregar el estudiante: ' + error);
-      console.log(estudiantes);
+      console.log(asignaturas);
     }
   };
 
@@ -37,7 +31,7 @@ export default function EstudianteComponent() {
 
     
     <View style={styles.container}>
-      <Text style={styles.title}>Agregar Estudiante</Text>
+      <Text style={styles.title}>Agregar Asigantura</Text>
       <TextInput
         style={styles.input}
         placeholder="Nombre"
@@ -47,23 +41,12 @@ export default function EstudianteComponent() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Apellido"
-        value={apellido}
-        onChangeText={setApellido}
+        placeholder="Estado"
+        value={estado}
+        onChangeText={setEstado}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Correo"
-        value={correo}
-        onChangeText={setCorreo}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Teléfono"
-        value={telefono}
-        onChangeText={setTelefono}
-      />
-      <Button title="Agregar Estudiante" onPress={handleAddEstudiante} />
+    
+      <Button title="Agregar" onPress={handleAddAsignatura} />
 
      </View>
   )
